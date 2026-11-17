@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "Vua Sửa Chữa",
+    "slug": "vua-sua-chua",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vuasuachua.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Dùng camera chụp ảnh thiết bị trước và sau khi sửa chữa",
+        "NSPhotoLibraryUsageDescription": "Truy cập thư viện ảnh để gắn vào nhật ký sửa chữa",
+        "NSFaceIDUsageDescription": "Dùng Face ID để đăng nhập nhanh và bảo mật"
+      }
+    },
+    "android": {
+      "package": "com.vuasuachua.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#1d4ed8",
+        "foregroundImage": "./assets/adaptive-icon.png"
+      },
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-local-authentication",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#1d4ed8",
+          "sounds": []
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "API_BASE_URL": "http://192.168.1.101:3000"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "electrical-repair-management-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test",
+    "lint": "node --check src/server.js && node --check src/app.js && node --check src/config/env.js && node --check src/routes/auth.js && node --check src/routes/customers.js && node --check src/routes/devices.js && node --check src/routes/repair-orders.js && node --check src/routes/inventory.js && node --check src/routes/reports.js && node --check src/services/report-service.js && node --check src/services/repair-log-service.js && node --check src/services/parts-request-service.js && node --check src/services/customer-portal-service.js && node --check src/services/invoice-service.js && node --check src/services/customer-service.js && node --check src/services/device-service.js && node --check src/services/repair-order-service.js && node --check src/services/workflow-service.js && node --check src/services/inventory-service.js && node --check src/services/repair-parts-service.js && node --check src/services/billing-service.js && node --check src/services/warranty-service.js && node --check src/lib/repair-state-machine.js && node --check src/middleware/authenticate.js && node --check src/middleware/login-rate-limit.js && node --check src/routes/repair-logs.js && node --check src/routes/parts-requests.js && node --check src/routes/customer-portal.js && node --check src/routes/invoices.js && node --check src/routes/notifications.js && node --check src/services/notification-service.js && node --check src/scripts/bootstrap-admin.js && node --check src/scripts/reset-password.js && node --check src/scripts/verify-repair-orders-integration.js && node --check src/scripts/verify-workflow-integration.js && node --check src/scripts/verify-inventory-integration.js && node --check src/scripts/verify-billing-warranty-integration.js && node --check src/scripts/verify-e2e-delivery.js && node --check src/scripts/verify-mobile-e2e.js && node --check src/scripts/generate-full-docs.js && node --check src/scripts/verify-backup-restore.js",
+    "test:e2e": "node src/scripts/verify-e2e-delivery.js",
+    "test:mobile-e2e": "node src/scripts/verify-mobile-e2e.js",
+    "test:all": "node --test && node src/scripts/verify-repair-orders-integration.js && node src/scripts/verify-workflow-integration.js && node src/scripts/verify-inventory-integration.js && node src/scripts/verify-billing-warranty-integration.js && node src/scripts/verify-e2e-delivery.js && node src/scripts/verify-mobile-e2e.js && node src/scripts/verify-backup-restore.js",
+    "bootstrap:admin": "node src/scripts/bootstrap-admin.js",
+    "reset:password": "node src/scripts/reset-password.js",
+    "docs:generate": "node src/scripts/generate-full-docs.js",
+    "thesis:generate": "node src/scripts/generate-thesis-diagrams.js && node src/scripts/generate-thesis-screenshots.js && node src/scripts/generate-thesis-docx.js"
+  },
+  "dependencies": {
+    "docx": "^9.15.4",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "mysql2": "^3.14.4",
+    "puppeteer-core": "^25.17.0"
+  }
+}

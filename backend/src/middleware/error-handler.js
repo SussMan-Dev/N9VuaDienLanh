@@ -1,0 +1,4 @@
+import {AppError} from '../lib/app-error.js';
+import {log} from '../lib/logger.js';
+export function notFound(req,res,next){next(new AppError(404,'NOT_FOUND','Route not found'));}
+export function errorHandler(error,req,res,_next){const expected=error instanceof AppError;const duplicate=error?.code==='ER_DUP_ENTRY';const foreignKey=error?.code==='ER_NO_REFERENCED_ROW_2';if(!expected&&!duplicate&&!foreignKey)log('error','unhandled_error',{requestId:req.requestId,message:error.message,stack:error.stack});const status=expected?error.status:duplicate?409:foreignKey?422:500;const code=expected?error.code:duplicate?'CONFLICT':foreignKey?'INVALID_REFERENCE':'INTERNAL_ERROR';const message=expected?error.message:duplicate?'A record with this value already exists':foreignKey?'A referenced record does not exist':'An unexpected error occurred';res.status(status).json({error:{code,message,details:expected?error.details:[]},requestId:req.requestId});}

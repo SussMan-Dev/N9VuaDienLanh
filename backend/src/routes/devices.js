@@ -1,0 +1,5 @@
+import { Router } from 'express';
+import { requirePermission } from '../middleware/authenticate.js';
+import { createDeviceService } from '../services/device-service.js';
+import { positiveId } from '../lib/validation.js';
+export function createDeviceRouter(db) { const router = Router(); const service = createDeviceService(db); const permit = requirePermission('intake.manage'); router.use('/api/v1/devices', permit); router.get('/api/v1/devices', async (req, res, next) => { try { res.json(await service.list(req.query)); } catch (error) { next(error); } }); router.post('/api/v1/devices', async (req, res, next) => { try { res.status(201).json(await service.create(req.body)); } catch (error) { next(error); } }); router.get('/api/v1/devices/:id', async (req, res, next) => { try { res.json(await service.get(positiveId(req.params.id, 'id'))); } catch (error) { next(error); } }); router.patch('/api/v1/devices/:id', async (req, res, next) => { try { res.json(await service.update(positiveId(req.params.id, 'id'), req.body)); } catch (error) { next(error); } }); return router; }
